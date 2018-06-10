@@ -1,0 +1,23 @@
+{
+	"presets": [
+		[
+			"env",
+			{
+				"modules": false,
+				"targets": {
+					"chrome": "60"
+				}
+			}
+		]
+	],
+	"env": {
+		"test": {
+			"presets": [
+				"env"
+			],
+			"plugins": [
+				"istanbul"
+			]
+		}
+	}
+}

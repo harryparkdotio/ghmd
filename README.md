@@ -1,2 +1,2 @@
 # ghmd
-an accurate github flavoured markdown previewer
+an accurate github flavoured markdown preview
