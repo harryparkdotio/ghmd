@@ -1,0 +1,36 @@
+@import "primer-core/index.scss";
+@import "primer-markdown/index.scss";
+
+.app {}
+
+.container {
+	width: 980px;
+	display: flex;
+	justify-content: center;
+}
+
+.Markdown {
+	width: 100%;
+}
+
+.Markdown > .header {
+	display: block;
+    padding: 9px 10px 10px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: #f6f8fa;
+    border: 1px solid rgba(27,31,35,0.15);
+    border-bottom: 0;
+    border-radius: 3px 3px 0 0;
+}
+
+.Markdown > .src {
+	padding: 45px;
+    word-wrap: break-word;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	outline: none;
+}
