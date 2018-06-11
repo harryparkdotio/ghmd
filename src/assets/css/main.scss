@@ -1,7 +1,15 @@
 @import "primer-core/index.scss";
 @import "primer-markdown/index.scss";
 
-.app {}
+[draggable] {
+	user-select: none;
+}
+
+.app {
+	padding: 25px 0;
+	height: 100%;
+	width: 100%;
+}
 
 .container {
 	width: 980px;
