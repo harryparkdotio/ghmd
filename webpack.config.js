@@ -24,7 +24,7 @@ module.exports = {
 	},
 	output: {
 		filename: '[name].js',
-		publicPath: './',
+		publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
 		path: path.resolve(__dirname, './dist')
 	},
 	module: {
@@ -42,7 +42,8 @@ module.exports = {
 					loaders: {
 						'styl': [VueStyleLoader, 'css-loader', 'stylus-loader'],
 						'scss': [VueStyleLoader, 'css-loader', 'sass-loader'],
-						'sass': [VueStyleLoader, 'css-loader', 'sass-loader?indentedSyntax']
+						'sass': [VueStyleLoader, 'css-loader', 'sass-loader?indentedSyntax'],
+						'css': [VueStyleLoader, 'css-loader']
 					}
 				}
 			},
@@ -87,7 +88,8 @@ module.exports = {
 			{ from: path.resolve(__dirname, './static'), to: './static', ignore: ['sw.js'] }
 		]),
 		new MiniCssExtractPlugin({
-			filename: 'main.css'
+			filename: 'main.css',
+			options: { minimize: true }
 		})
 	],
 	optimization: {

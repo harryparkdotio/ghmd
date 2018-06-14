@@ -55,18 +55,7 @@
 				return new TextDecoder('utf-8').decode(uint8.value);
 			},
 			async getDefaultContents() {
-				let contents = '';
-				try {
-					contents = await this.fetchContents('https://harryparkdotio.github.io/ghmd/README.md');
-				} catch(err) {
-					try {
-						contents = await this.fetchContents('https://raw.githubusercontent.com/harryparkdotio/ghmd/master/README.md');
-					} catch(err) {
-						//
-					}
-				}
-
-				this.$store.commit('content', contents);
+				this.$store.commit('content', await this.fetchContents('https://raw.githubusercontent.com/harryparkdotio/ghmd/master/README.md'));
 				this.$store.commit('filename', 'README.md');
 			},
 			clear() {

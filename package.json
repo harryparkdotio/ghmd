@@ -44,6 +44,7 @@
 		"primer-base": "^1.7.1",
 		"primer-layout": "^1.4.6",
 		"primer-markdown": "^3.7.6",
+		"prismjs": "^1.14.0",
 		"remarkable": "^1.7.1",
 		"vue": "^2.5.16",
 		"vuex": "^3.0.1",

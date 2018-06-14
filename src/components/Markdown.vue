@@ -9,7 +9,10 @@
 	</div>
 </template>
 
+<style lang='scss' src='@/assets/css/syntax-highlighting.scss'></style>
+
 <script>
+	import Prism from 'prismjs';
 	import Remarkable from 'remarkable';
 
 	const md = new Remarkable({
@@ -17,7 +20,13 @@
 		breaks: true,
 		langPrefix: 'language-',
 		typographer: false,
-		highlight: (code, lang) => code
+		highlight: (code, lang) => {
+			try {
+				return Prism.highlight(code, Prism.languages[lang], lang);
+			} catch(err) {
+				console.error(`could not highlight lang-${lang}: ${err}`);
+			}
+		}
 	});
 
 	export default {
