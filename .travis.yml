@@ -11,11 +11,12 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 
 script:
+  - npm run build
   - npm test
 
 cache:
   directories:
-  - node_modules
+    - node_modules
 
 notifications:
   email:
@@ -24,6 +25,21 @@ notifications:
 
 branches:
   only:
-  - master
+    - master
+
+before_deploy:
+  - mkdir deploy
+  - mv dist deploy/dist
+  - mv index.html deploy/index.html
+  - mv sw.js deploy/sw.js
+
+deploy:
+  local-dir: deploy
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  on:
+    branch: master
 
 after_success: npm run coverage
