@@ -1,5 +1,5 @@
 <template>
-	<div class='app' @drop='dragFile' @dragover='dragFile'>
+	<div id='app' class='app' @drop.prevent='dropFile' @dragover.prevent @dragstart.prevent @dragenter.prevent @drag.prevent>
 		<div class='container'>
 			<Markdown :raw='content' :filename='filename'/>
 		</div>
@@ -9,50 +9,69 @@
 <style lang='scss' src='@/assets/css/main.scss'></style>
 
 <script>
+	import { mapGetters } from 'vuex';
+
 	import Markdown from '@/components/Markdown';
 
 	export default {
 		name: 'App',
-		data() {
-			return {
-				content: ['# ghmd', 'an accurate github flavoured markdown preview', '```js', 'let a = 1;', 'let b = 2;', '', 'console.log(a + b) // 3', '```'].join('\n'),
-				filename: 'README.md'
-			};
-		},
-		created() {
-			if (localStorage.Markdown) {
-				const Mark = JSON.parse(localStorage.getItem('Markdown'));
-				this.filename = Mark.filename;
-				this.content = Mark.content;
+		created: async function() {
+			if (!this.content) {
+				await this.getDefaultContents();
 			}
 		},
+		computed: {
+			...mapGetters([
+				'content',
+				'filename'
+			])
+		},
 		methods: {
-			async dragFile(e) {
-				e.preventDefault();
+			async dropFile(e) {
 				try {
-					const fileObj = e.dataTransfer.files[0];
-					if (!/\.(md|text|txt)$/.test(fileObj.name)) {
+					const file = e.dataTransfer.files[0];
+					if (!/\.(md|text|txt)$/.test(file.name)) {
 						return;
 					}
-					this.filename = fileObj.name;
-					const rawContents = await fetch(window.URL.createObjectURL(fileObj));
-					const reader = rawContents.body.getReader();
-					const uint8 = await reader.read();
-					const data = new TextDecoder('utf-8').decode(uint8.value);
-					this.content = data;
-					this.save();
+
+					const content = await this.fetchContents(window.URL.createObjectURL(file));
+
+					this.$store.commit('content', content);
+					this.$store.commit('filename', file.name);
 				} catch(err) {
-					console.error(err);
+					console.log(err);
 				}
 			},
-			save(filename, content) {
-				if (!filename) {
-					filename = this.filename;
+			async fetchContents(file) {
+				const raw = await fetch(file).then(response => {
+					if (!response.ok) {
+						throw new Error(response.status);
+					}
+					return response;
+				});
+
+				const reader = raw.body.getReader();
+				const uint8 = await reader.read();
+				return new TextDecoder('utf-8').decode(uint8.value);
+			},
+			async getDefaultContents() {
+				let contents = '';
+				try {
+					contents = await this.fetchContents('https://harryparkdotio.github.io/ghmd/README.md');
+				} catch(err) {
+					try {
+						contents = await this.fetchContents('https://raw.githubusercontent.com/harryparkdotio/ghmd/master/README.md');
+					} catch(err) {
+						//
+					}
 				}
-				if (!content) {
-					content = this.content;
-				}
-				localStorage.Markdown = JSON.stringify({ filename, content });
+
+				this.$store.commit('content', contents);
+				this.$store.commit('filename', 'README.md');
+			},
+			clear() {
+				this.$store.commit('content', '');
+				this.$store.commit('filename', '');
 			}
 		},
 		components: {

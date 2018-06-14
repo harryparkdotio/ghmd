@@ -5,7 +5,8 @@ const PRECACHE_URLS = [
 	'index.html',
 	'./',
 	'dist/bundle.js',
-	'dist/vendor.js'
+	'dist/vendor.js',
+	'README.md'
 ];
 
 self.addEventListener('install', event => {
