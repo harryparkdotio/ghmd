@@ -27,14 +27,8 @@ branches:
   only:
     - master
 
-before_deploy:
-  - mkdir deploy
-  - mv dist deploy/dist
-  - mv index.html deploy/index.html
-  - mv sw.js deploy/sw.js
-
 deploy:
-  local-dir: deploy
+  local-dir: dist
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN

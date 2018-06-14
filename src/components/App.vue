@@ -1,5 +1,5 @@
 <template>
-	<div id='app' class='app' @drop.prevent='dropFile' @dragover.prevent @dragstart.prevent @dragenter.prevent @drag.prevent>
+	<div class='app' @drop.prevent='dropFile' @dragover.prevent @dragstart.prevent @dragenter.prevent @drag.prevent>
 		<div class='container'>
 			<Markdown :raw='content' :filename='filename'/>
 		</div>

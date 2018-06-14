@@ -4,8 +4,9 @@ const RUNTIME = 'runtime';
 const PRECACHE_URLS = [
 	'index.html',
 	'./',
-	'dist/bundle.js',
-	'dist/vendor.js',
+	'bundle.js',
+	'vendor.js',
+	'main.css',
 	'README.md'
 ];
 
