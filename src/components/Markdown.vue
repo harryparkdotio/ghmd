@@ -46,5 +46,5 @@
 				default: ''
 			}
 		}
-	}
+	};
 </script>
