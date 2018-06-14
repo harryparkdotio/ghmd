@@ -45,14 +45,14 @@ module.exports = {
 		"no-useless-escape": 0,
 		"no-var": 2,
 		"vue/html-quotes": [2, "single"],
-		"vue/script-indent": [2, "tab", { "baseIndent": 1 }],
 		"vue/v-bind-style": 2,
 		"vue/v-on-style": 2
 	},
 	"overrides": {
 		"files": "**/*.vue",
 		"rules": {
-			"indent": "off"
+			"indent": "off",
+			"vue/script-indent": [2, "tab", { "baseIndent": 1 }]
 		}
 	}
 }

@@ -1,11 +1,13 @@
 const path = require('path');
 const VueLoader = require('vue-loader');
 
+const cssLoader = 'css-loader?minimize&keepBreaks&keepSpecialComments=0';
+
 module.exports = {
 	context: path.resolve(__dirname),
-	mode: 'development',
+	mode: process.env.NODE_ENV,
 	entry: {
-		app: './src/app.js'
+		bundle: './src/app.js'
 	},
 	devServer: {
 		historyApiFallback: true,
@@ -13,7 +15,7 @@ module.exports = {
 		overlay: true
 	},
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].js',
 		publicPath: '/dist/',
 		path: path.resolve(__dirname, './dist')
 	},
@@ -30,27 +32,27 @@ module.exports = {
 				exclude: /node_modules/,
 				options: {
 					loaders: {
-						'styl': ['vue-style-loader', 'css-loader', 'stylus-loader'],
-						'scss': ['vue-style-loader', 'css-loader', 'sass-loader'],
-						'sass': ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
+						'styl': ['vue-style-loader', cssLoader, 'stylus-loader'],
+						'scss': ['vue-style-loader', cssLoader, 'sass-loader'],
+						'sass': ['vue-style-loader', cssLoader, 'sass-loader?indentedSyntax']
 					}
 				}
 			},
 			{
 				test: /\.css$/,
-				use: ['vue-style-loader', 'css-loader']
+				use: ['vue-style-loader', cssLoader]
 			},
 			{
 				test: /\.styl$/,
-				use: ['vue-style-loader', 'css-loader', 'stylus-loader']
+				use: ['vue-style-loader', cssLoader, 'stylus-loader']
 			},
 			{
 				test: /\.scss$/,
-				use: ['vue-style-loader', 'css-loader', 'sass-loader']
+				use: ['vue-style-loader', cssLoader, 'sass-loader']
 			},
 			{
 				test: /\.sass$/,
-				use: ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
+				use: ['vue-style-loader', cssLoader, 'sass-loader?indentedSyntax']
 			},
 			{
 				test: /\.(png|jpg|gif|svg)$/,
@@ -69,5 +71,17 @@ module.exports = {
 	plugins: [
 		new VueLoader.VueLoaderPlugin()
 	],
-	devtool: 'inline-source-map'
+	optimization: {
+		minimize: true,
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					test: /node_modules/,
+					name: 'vendor',
+					chunks: 'initial',
+					enforce: true
+				}
+			}
+		}
+	}
 };
