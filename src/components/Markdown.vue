@@ -12,47 +12,52 @@
 <style lang='scss' src='@/assets/css/syntax-highlighting.scss'></style>
 
 <script>
-	import Prism from 'prismjs';
+	import { mapGetters } from 'vuex';
+
+	import Prism from '@/utils/prism-extensions';
 	import Remarkable from 'remarkable';
+
+	let highlighterCache = {};
 
 	const md = new Remarkable({
 		html: true,
 		breaks: true,
-		langPrefix: 'language-',
-		typographer: false,
-		highlight: (code, lang) => {
+		highlight: function(code, lang) {
+			let entity = JSON.stringify({ code, lang });
+
 			try {
-				return Prism.highlight(code, Prism.languages[lang], lang);
+				if (!Prism.languages[lang]) {
+					Prism.loadLang(lang);
+				}
 			} catch(err) {
-				console.error(`could not highlight lang-${lang}: ${err}`);
+				console.error(err);
 			}
+
+			try {
+				if (!highlighterCache[entity]) {
+					highlighterCache[entity] = Prism.highlight(code, Prism.languages[lang]);
+				}
+			} catch(err) {
+				console.error(err);
+				return '';
+			}
+			return highlighterCache[entity] || '';
 		}
 	});
 
 	export default {
 		name: 'Markdown',
 		computed: {
+			...mapGetters([
+				'content',
+				'filename'
+			]),
 			compiled: function() {
 				try {
-					return md.render(this.raw);
+					return md.render(this.content);
 				} catch(err) {
 					console.error(err);
 				}
-			}
-		},
-		methods: {
-			updateRaw(e) {
-				console.log(e);
-			}
-		},
-		props: {
-			filename: {
-				type: String,
-				default: 'README.md'
-			},
-			raw: {
-				type: String,
-				default: ''
 			}
 		}
 	};
