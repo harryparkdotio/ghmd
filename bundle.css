@@ -44,22 +44,34 @@
 .token.boolean {
   color: #005cc5;
 }
-.language-javascript .token.function.prototype {
+.language-javascript .token.function.prototype,
+.language-js .token.function.prototype,
+.language-jsx .token.function.prototype {
   color: #005cc5;
 }
-.language-javascript .token.keyword.builtin.console {
+.language-javascript .token.keyword.builtin.console,
+.language-js .token.keyword.builtin.console,
+.language-jsx .token.keyword.builtin.console {
   color: #6f42c1;
 }
-.language-javascript .token.function.builtin {
+.language-javascript .token.function.builtin,
+.language-js .token.function.builtin,
+.language-jsx .token.function.builtin {
   color: #005cc5;
 }
-.language-javascript .token.keyword.builtin {
+.language-javascript .token.keyword.builtin,
+.language-js .token.keyword.builtin,
+.language-jsx .token.keyword.builtin {
   color: #005cc5;
 }
-.language-javascript .token.keyword.builtin + .token.punctuation + .token.function {
+.language-javascript .token.keyword.builtin + .token.punctuation + .token.function,
+.language-js .token.keyword.builtin + .token.punctuation + .token.function,
+.language-jsx .token.keyword.builtin + .token.punctuation + .token.function {
   color: #6f42c1;
 }
-.token.keyword.builtin.console + .token.punctuation + .token.function {
+.language-javascript .token.keyword.builtin.console + .token.punctuation + .token.function,
+.language-js .token.keyword.builtin.console + .token.punctuation + .token.function,
+.language-jsx .token.keyword.builtin.console + .token.punctuation + .token.function {
   color: #005cc5;
 }
 
@@ -1596,4 +1608,4 @@ body {
 }
 
 
-/*# sourceMappingURL=main.css.map*/
+/*# sourceMappingURL=bundle.css.map*/

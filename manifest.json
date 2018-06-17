@@ -1,0 +1,9 @@
+{
+  "name": "ghmd",
+  "short_name": "ghmd",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "an accurate github flavoured markdown preview",
+  "background_color": "#000000"
+}
