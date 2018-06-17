@@ -10,6 +10,15 @@
 .token.function {
   color: #6f42c1;
 }
+.token.selector {
+  color: #6f42c1;
+}
+.token.property {
+  color: #005cc5;
+}
+.token.rule {
+  color: #d73a49;
+}
 .token.doctype {
   color: #24292e;
 }
