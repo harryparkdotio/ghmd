@@ -4,7 +4,6 @@ const path = require('path');
 const pkg = require('./package.json');
 const webpack = require('webpack');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OfflinePlugin = require('offline-plugin');
@@ -20,7 +19,7 @@ const config = {
 	context: path.resolve(__dirname),
 	mode: process.env.NODE_ENV,
 	performance: {
-		hints: devMode
+		hints: false
 	},
 	entry: {
 		bundle: './src/app.js'
@@ -92,9 +91,6 @@ const config = {
 			minify: { html5: true, collapseWhitespace: true, minifyCSS: true, minifyJS: true, minifyURLs: false, removeAttributeQuotes: true, removeComments: true, removeEmptyAttributes: true, removeRedundantAttributes: true, removeScriptTypeAttributes: true, removeStyleLinkTypeAttributese: true, useShortDoctype: true }
 		}),
 		new VueLoader.VueLoaderPlugin(),
-		new CopyWebpackPlugin([
-			{ from: path.resolve(__dirname, './static'), to: './static' }
-		]),
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 			chunkFilename: '[id].css',

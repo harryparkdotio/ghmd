@@ -1,6 +1,12 @@
-import EmojiConvertor from 'emoji-js';
+import gemoji from 'gemoji';
 
-const emoji = new EmojiConvertor();
+const getEmoji = (moji) => {
+	try {
+		return gemoji.name[moji].emoji;
+	} catch(err) {
+		return '';
+	}
+};
 
 export default (md, opts) => {
 	md.inline.ruler.push('emoji', EmojiRule);
@@ -44,7 +50,7 @@ const EmojiRule = (state, silent) => {
 				let slice = state.src.slice(pos, matchStart);
 				state.push({
 					type: 'text',
-					content: slice.replace(/.+/g, emoji.replace_colons(`:${slice}:`)).trim(),
+					content: slice.replace(/.+/g, getEmoji(slice)).trim(),
 					block: false,
 					level: state.level
 				});
