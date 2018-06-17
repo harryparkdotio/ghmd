@@ -10,7 +10,8 @@
 		"lint": "eslint \"src/**/*.{js,vue}\"",
 		"test": "npm run lint",
 		"dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-		"build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+		"build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+		"start": "http-server dist"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.3",
@@ -26,8 +27,10 @@
 		"eslint-plugin-vue": "^4.5.0",
 		"file-loader": "^1.1.11",
 		"html-webpack-plugin": "^3.2.0",
+		"http-server": "^0.11.1",
 		"mini-css-extract-plugin": "^0.4.0",
 		"node-sass": "^4.9.0",
+		"offline-plugin": "^5.0.5",
 		"sass-loader": "^7.0.3",
 		"style-loader": "^0.21.0",
 		"stylus": "^0.54.5",
@@ -38,13 +41,16 @@
 		"vue-template-compiler": "^2.5.16",
 		"webpack": "^4.12.0",
 		"webpack-cli": "^3.0.3",
-		"webpack-dev-server": "^3.1.4"
+		"webpack-dev-server": "^3.1.4",
+		"webpack-pwa-manifest": "^3.6.2"
 	},
 	"dependencies": {
+		"emoji-js": "^3.4.1",
+		"octicons": "^7.3.0",
 		"primer-base": "^1.7.1",
 		"primer-layout": "^1.4.6",
 		"primer-markdown": "^3.7.6",
-		"prismjs": "^1.14.0",
+		"prismjs": "^1.15.0",
 		"remarkable": "^1.7.1",
 		"vue": "^2.5.16",
 		"vuex": "^3.0.1",

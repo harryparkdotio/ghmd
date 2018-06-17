@@ -9,7 +9,7 @@
 <style lang='scss' src='@/assets/css/main.scss'></style>
 
 <script>
-	import { mapGetters } from 'vuex';
+	import { mapGetters, mapActions } from 'vuex';
 
 	import Markdown from '@/components/Markdown';
 
@@ -17,7 +17,9 @@
 		name: 'App',
 		created: async function() {
 			if (!this.content) {
-				await this.getDefaultContents();
+				const contents = await this.getDefaultContent();
+				this.$store.commit('content', contents.content);
+				this.$store.commit('filename', contents.filename);
 			}
 		},
 		computed: {
@@ -27,6 +29,11 @@
 			])
 		},
 		methods: {
+			...mapActions([
+				'getDefaultContent',
+				'fetchContent',
+				'clear'
+			]),
 			async dropFile(e) {
 				try {
 					const file = e.dataTransfer.files[0];
@@ -34,33 +41,13 @@
 						return;
 					}
 
-					const content = await this.fetchContents(window.URL.createObjectURL(file));
+					const content = await this.fetchContent(window.URL.createObjectURL(file));
 
 					this.$store.commit('content', content);
 					this.$store.commit('filename', file.name);
 				} catch(err) {
 					console.log(err);
 				}
-			},
-			async fetchContents(file) {
-				const raw = await fetch(file).then(response => {
-					if (!response.ok) {
-						throw new Error(response.status);
-					}
-					return response;
-				});
-
-				const reader = raw.body.getReader();
-				const uint8 = await reader.read();
-				return new TextDecoder('utf-8').decode(uint8.value);
-			},
-			async getDefaultContents() {
-				this.$store.commit('content', await this.fetchContents('https://raw.githubusercontent.com/harryparkdotio/ghmd/master/README.md'));
-				this.$store.commit('filename', 'README.md');
-			},
-			clear() {
-				this.$store.commit('content', '');
-				this.$store.commit('filename', '');
 			}
 		},
 		components: {

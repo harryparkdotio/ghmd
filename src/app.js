@@ -1,6 +1,7 @@
-if (navigator && navigator.serviceWorker) { navigator.serviceWorker.register('./sw.js'); }
-
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 import Vue from 'vue';
+
+OfflinePluginRuntime.install();
 
 Vue.config.productionTip = false;
 

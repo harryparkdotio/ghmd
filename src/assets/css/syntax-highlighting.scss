@@ -57,35 +57,38 @@
 
 // ----------------- custom -----------------
 // ---- javascript ----
+.language-javascript,
+.language-js,
+.language-jsx {
+	.token.function.prototype {
+		// example: require.<find>()
+		// but not: require.<customfunction>()
+		// based on Array, Object, String, Number, Symbol, Function prototypes
+		color: #005cc5;
+	}
 
-.language-javascript .token.function.prototype {
-	// example: require.<find>()
-	// but not: require.<customfunction>()
-	// based on Array, Object, String, Number, Symbol, Function prototypes
-	color: #005cc5;
-}
+	.token.keyword.builtin.console {
+		// example: <require>()
+		color: #6f42c1;
+	}
 
-.language-javascript .token.keyword.builtin.console {
-	// example: <require>()
-	color: #6f42c1;
-}
+	.token.function.builtin {
+		// example: <require>()
+		color: #005cc5;
+	}
 
-.language-javascript .token.function.builtin {
-	// example: <require>()
-	color: #005cc5;
-}
+	.token.keyword.builtin {
+		// example <console>
+		color: #005cc5;
+	}
 
-.language-javascript .token.keyword.builtin {
-	// example <console>
-	color: #005cc5;
-}
+	.token.keyword.builtin + .token.punctuation + .token.function {
+		// example: console.<log>
+		color: #6f42c1;
+	}
 
-.language-javascript .token.keyword.builtin + .token.punctuation + .token.function {
-	// example: console.<log>
-	color: #6f42c1;
-}
-
-.token.keyword.builtin.console + .token.punctuation + .token.function {
-	// example: console.<log>
-	color: #005cc5;
+	.token.keyword.builtin.console + .token.punctuation + .token.function {
+		// example: console.<log>
+		color: #005cc5;
+	}
 }
