@@ -2,6 +2,7 @@
 	<div id='Markdown' class='Markdown'>
 		<h3 class='header'>
 			<span><octicon name='book'/>&nbsp;{{filename}}</span>
+			<span><a @click.prevent='clear'><octicon name='trashcan'/></a></span>
 		</h3>
 		<article class='src markdown-body' v-html='compiled'></article>
 	</div>
@@ -10,19 +11,16 @@
 <style lang='scss' src='@/assets/css/syntax-highlighting.scss'></style>
 
 <script>
-	import { mapGetters } from 'vuex';
+	import { mapGetters, mapActions } from 'vuex';
 
 	import octicon from '@/components/octicon';
 	import Prism from '@/extensions/prism';
-	import RemarkableEmoji from '@/extensions/remarkable-emoji';
 
-	import Remarkable from 'remarkable';
+	import Marked from 'marked';
 
 	let highlighterCache = {};
 
-	const md = new Remarkable({
-		html: true,
-		breaks: true,
+	Marked.setOptions({
 		highlight: function(code, lang) {
 			let entity = JSON.stringify({ code, lang });
 
@@ -35,10 +33,9 @@
 			}
 
 			return highlighterCache[entity] || '';
-		}
+		},
+		gfm: true
 	});
-
-	md.use(RemarkableEmoji);
 
 	export default {
 		name: 'Markdown',
@@ -49,11 +46,16 @@
 			]),
 			compiled: function() {
 				try {
-					return md.render(this.content);
+					return Marked(this.content);
 				} catch(err) {
 					console.error(err);
 				}
 			}
+		},
+		methods: {
+			...mapActions([
+				'clear'
+			])
 		},
 		components: {
 			octicon

@@ -45,14 +45,13 @@
 		"webpack-pwa-manifest": "^3.6.2"
 	},
 	"dependencies": {
-		"gemoji": "^4.2.1",
 		"markdown-extensions": "^1.1.1",
+		"marked": "^0.4.0",
 		"octicons": "^7.3.0",
 		"primer-base": "^1.7.1",
 		"primer-layout": "^1.4.6",
 		"primer-markdown": "^3.7.6",
 		"prismjs": "^1.15.0",
-		"remarkable": "^1.7.1",
 		"vue": "^2.5.16",
 		"vuex": "^3.0.1",
 		"vuex-persistedstate": "^2.5.4"
