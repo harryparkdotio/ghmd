@@ -4,7 +4,7 @@ const getEmoji = (moji) => {
 	try {
 		return gemoji.name[moji].emoji;
 	} catch(err) {
-		return '';
+		return `:${moji}:`;
 	}
 };
 
