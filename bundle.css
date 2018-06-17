@@ -1596,7 +1596,8 @@ body {
   width: 100%;
 }
 .Markdown > .header {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   padding: 9px 10px 10px;
   margin: 0;
   font-size: 14px;
