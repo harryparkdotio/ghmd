@@ -13,6 +13,8 @@
 
 	import Markdown from '@/components/Markdown';
 
+	import markdownExtensions from 'markdown-extensions';
+
 	export default {
 		name: 'App',
 		created: async function() {
@@ -37,7 +39,7 @@
 			async dropFile(e) {
 				try {
 					const file = e.dataTransfer.files[0];
-					if (!/\.(md|text|txt)$/.test(file.name)) {
+					if (!(new RegExp(`(${markdownExtensions.join('|')})$`)).test(file.name)) {
 						return;
 					}
 

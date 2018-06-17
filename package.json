@@ -46,6 +46,7 @@
 	},
 	"dependencies": {
 		"gemoji": "^4.2.1",
+		"markdown-extensions": "^1.1.1",
 		"octicons": "^7.3.0",
 		"primer-base": "^1.7.1",
 		"primer-layout": "^1.4.6",
