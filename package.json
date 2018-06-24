@@ -45,6 +45,7 @@
 		"webpack-pwa-manifest": "^3.6.2"
 	},
 	"dependencies": {
+		"autosize": "^4.0.2",
 		"markdown-extensions": "^1.1.1",
 		"marked": "^0.4.0",
 		"octicons": "^7.3.0",

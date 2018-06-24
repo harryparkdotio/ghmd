@@ -8,7 +8,13 @@ import persistedState from 'vuex-persistedstate';
 export default new Vuex.Store({
 	state: {
 		content: '',
-		filename: ''
+		filename: '',
+		editor: {
+			enabled: false
+		},
+		preview: {
+			enabled: true
+		}
 	},
 	actions: {
 		fetchContent: async (context, url) => {
@@ -30,6 +36,15 @@ export default new Vuex.Store({
 		clear: (context) => {
 			context.commit('content', '');
 			context.commit('filename', '');
+		},
+		enable: (context, pane) => {
+			context.commit('enable', pane);
+		},
+		disable: (context, pane) => {
+			context.commit('disable', pane);
+		},
+		toggle: (context, pane) => {
+			context.commit('toggle', pane);
 		}
 	},
 	mutations: {
@@ -38,6 +53,21 @@ export default new Vuex.Store({
 		},
 		filename(state, filename) {
 			state.filename = filename;
+		},
+		enable(state, pane) {
+			if (state[pane]) {
+				state[pane].enabled = true;
+			}
+		},
+		disable(state, pane) {
+			if (state[pane]) {
+				state[pane].enabled = false;
+			}
+		},
+		toggle(state, pane) {
+			if (state[pane]) {
+				state[pane].enabled = !state[pane].enabled;
+			}
 		}
 	},
 	getters: {
@@ -46,7 +76,9 @@ export default new Vuex.Store({
 		},
 		filename: (state) => {
 			return state.filename ? state.filename : 'README.md';
-		}
+		},
+		editor: (state) => state.editor,
+		preview: (state) => state.preview
 	},
 	plugins: [
 		persistedState()

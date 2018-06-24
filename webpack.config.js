@@ -96,7 +96,6 @@ const config = {
 			chunkFilename: '[id].css',
 			options: { minimize: true }
 		}),
-		new OfflinePlugin(),
 		new WebpackPwaManifest({
 			name: pkg.name,
 			short_name: pkg.name,
@@ -122,5 +121,9 @@ const config = {
 		}
 	}
 };
+
+if (process.env.NODE_ENV === 'production') {
+	config.plugins.push(new OfflinePlugin());
+}
 
 module.exports = config;

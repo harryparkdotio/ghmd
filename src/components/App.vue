@@ -1,8 +1,13 @@
 <template>
-	<div class='app' @drop.prevent='dropFile' @dragover.prevent @dragstart.prevent @dragenter.prevent @drag.prevent>
-		<div class='container'>
+	<div class='app'>
+		<div class='container pane-container'>
+			<Editor ref='editor'/>
 			<Markdown/>
 		</div>
+
+		<footer>
+			<a href='https://github.com/harryparkdotio/ghmd'><octicon name='mark-github' :height='25'/></a>
+		</footer>
 	</div>
 </template>
 
@@ -11,24 +16,47 @@
 <script>
 	import { mapGetters, mapActions } from 'vuex';
 
+	import Editor from '@/components/Editor';
 	import Markdown from '@/components/Markdown';
+	import octicon from '@/components/octicon';
 
 	import markdownExtensions from 'markdown-extensions';
 
+	const kille = (e) => { e.preventDefault(); e.stopPropagation(); };
+
 	export default {
 		name: 'App',
-		created: async function() {
-			if (!this.content) {
-				const contents = await this.getDefaultContent();
-				this.$store.commit('content', contents.content);
-				this.$store.commit('filename', contents.filename);
-			}
-		},
 		computed: {
 			...mapGetters([
 				'content',
 				'filename'
 			])
+		},
+		data() {
+			return {
+				enabledrop: false
+			};
+		},
+		mounted: async function() {
+			let self = this;
+			if (!this.content) {
+				const contents = await this.getDefaultContent();
+				this.$store.commit('content', contents.content);
+				this.$store.commit('filename', contents.filename);
+			}
+
+			document.body.addEventListener('drop', async (e) => {
+				kille(e);
+
+				await self.dropFile(e);
+				this.$refs.editor.resize();
+			});
+
+			document.body.addEventListener('dragstart', kille);
+			document.body.addEventListener('dragover', kille);
+			document.body.addEventListener('dragenter', kille);
+
+			this.$refs.editor.resize();
 		},
 		methods: {
 			...mapActions([
@@ -53,7 +81,9 @@
 			}
 		},
 		components: {
-			Markdown
+			Editor,
+			Markdown,
+			octicon
 		}
 	};
 </script>

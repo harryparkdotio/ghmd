@@ -59,14 +59,6 @@ $ sudo rm -rf
 
 > enabled languages
 > `bash`, `clike`, `c`, `csharp`, `cpp`, `css`, `diff`, `git`, `docker`, `go`, `haml`, `java`, `javascript`, `json`, `less`, `markup`, `markup-templating`, `markdown`, `handlebars`, `php`, `pug`, `python`, `jsx`, `tsx`, `ruby`, `sass`, `scss`, `stylus`, `swift`, `twig`, `typescript`, `yaml`
->
-> *not all are included for the sake of speed and efficiency*
-
-#### emoji :poop: :fire: :100:
-```markdown
-#### emoji :poop: :fire: :100:
-```
-> uses the same emoji names as github
 
 #### completely local
 no calls to home, no fonts that track you, no data collection

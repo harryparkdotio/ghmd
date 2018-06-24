@@ -1,5 +1,5 @@
 <template>
-	<span v-html='icon'></span>
+	<span :class='`octicon octicon-${name}`' v-html='icon'></span>
 </template>
 
 <script>
@@ -8,9 +8,17 @@
 	export default {
 		name: 'octicon',
 		computed: {
+			opt: function() {
+				let _opt = {};
+
+				if (this.height) _opt.height = this.height;
+				if (this.width) _opt.width = this.width;
+
+				return _opt;
+			},
 			icon: function() {
 				try {
-					return octicons[this.name].toSVG();
+					return octicons[this.name].toSVG(this.opt);
 				} catch(err) {
 					console.error(err);
 				}
@@ -20,7 +28,9 @@
 			name: {
 				type: String,
 				required: true
-			}
+			},
+			height: {},
+			width: {}
 		}
 	};
 </script>
