@@ -47,7 +47,7 @@
 	"dependencies": {
 		"autosize": "^4.0.2",
 		"markdown-extensions": "^1.1.1",
-		"marked": "^0.4.0",
+		"markdown-it": "^8.4.1",
 		"octicons": "^7.3.0",
 		"primer-base": "^1.7.1",
 		"primer-layout": "^1.4.6",

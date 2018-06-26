@@ -22,7 +22,7 @@
 
 	import markdownExtensions from 'markdown-extensions';
 
-	const kille = (e) => { e.preventDefault(); e.stopPropagation(); };
+	function preventevent (e) { e.preventDefault(); e.stopPropagation(); };
 
 	export default {
 		name: 'App',
@@ -37,26 +37,18 @@
 				enabledrop: false
 			};
 		},
-		mounted: async function() {
-			let self = this;
+		async mounted(){
 			if (!this.content) {
 				const contents = await this.getDefaultContent();
 				this.$store.commit('content', contents.content);
 				this.$store.commit('filename', contents.filename);
+				this.$refs.editor.resize();
 			}
 
-			document.body.addEventListener('drop', async (e) => {
-				kille(e);
-
-				await self.dropFile(e);
-				this.$refs.editor.resize();
-			});
-
-			document.body.addEventListener('dragstart', kille);
-			document.body.addEventListener('dragover', kille);
-			document.body.addEventListener('dragenter', kille);
-
-			this.$refs.editor.resize();
+			document.body.addEventListener('drop', this.dropFile);
+			document.body.addEventListener('dragstart', preventevent);
+			document.body.addEventListener('dragover', preventevent);
+			document.body.addEventListener('dragenter', preventevent);
 		},
 		methods: {
 			...mapActions([
@@ -65,6 +57,7 @@
 				'clear'
 			]),
 			async dropFile(e) {
+				preventevent(e);
 				try {
 					const file = e.dataTransfer.files[0];
 					if (!(new RegExp(`(${markdownExtensions.join('|')})$`)).test(file.name)) {
@@ -75,6 +68,8 @@
 
 					this.$store.commit('content', content);
 					this.$store.commit('filename', file.name);
+
+					this.$refs.editor.resize();
 				} catch(err) {
 					console.log(err);
 				}

@@ -91,14 +91,16 @@ body {
 	}
 
 	textarea {
+		box-sizing: content-box;
 		font-family: monospace;
 		white-space: pre-line;
 		outline: none;
 		border: none;
 		resize: none;
 		width: 100%;
-		overflow: auto !important;
+		overflow: none !important;
 		height: 100%;
+		min-height: 50px;
 	}
 }
 

@@ -75,7 +75,7 @@ export default new Vuex.Store({
 			return state.content ? state.content : '';
 		},
 		filename: (state) => {
-			return state.filename ? state.filename : 'README.md';
+			return state.filename ? state.filename : '';
 		},
 		editor: (state) => state.editor,
 		preview: (state) => state.preview

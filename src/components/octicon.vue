@@ -8,7 +8,7 @@
 	export default {
 		name: 'octicon',
 		computed: {
-			opt: function() {
+			opt() {
 				let _opt = {};
 
 				if (this.height) _opt.height = this.height;
@@ -16,7 +16,7 @@
 
 				return _opt;
 			},
-			icon: function() {
+			icon() {
 				try {
 					return octicons[this.name].toSVG(this.opt);
 				} catch(err) {

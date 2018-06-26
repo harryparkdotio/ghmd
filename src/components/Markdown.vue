@@ -3,7 +3,7 @@
 		<h3 class='header'>
 			<span>
 				<octicon name='book'/>&nbsp;
-				<input class='filename' :value='rawfilename' @input='updateFilename' @blur='blurFilename'/>
+				<input class='filename' v-model='rawfilename' @blur='blurFilename'/>
 			</span>
 			<span class='header-controls'>
 				<a @click.prevent='toggle("editor")'><octicon name='code'/></a>
@@ -24,11 +24,11 @@
 	import Prism from '@/extensions/prism';
 
 	import markdownExtensions from 'markdown-extensions';
-	import Marked from 'marked';
+	import MarkdownIt from 'markdown-it';
 
 	let highlighterCache = {};
 
-	const makeFilename = (f) => {
+	function makeFilename(f) {
 		let fspl = f.replace(/^[\.]+|[\.]+$/g, '').split('.');
 		if (!(new RegExp(`(${markdownExtensions.join('|')})$`)).test(fspl[fspl.length - 1].toLowerCase())) {
 			return `${f}.md`;
@@ -36,8 +36,8 @@
 		return f;
 	};
 
-	Marked.setOptions({
-		highlight: function(code, lang) {
+	const md = new MarkdownIt({
+		highlight(code, lang) {
 			let entity = JSON.stringify({ code, lang });
 
 			try {
@@ -49,8 +49,7 @@
 			}
 
 			return highlighterCache[entity] || '';
-		},
-		gfm: true
+		}
 	});
 
 	export default {
@@ -62,18 +61,21 @@
 				'editor',
 				'preview'
 			]),
-			compiled: function() {
+			compiled() {
 				try {
-					return Marked(this.content);
+					return md.render(this.content);
 				} catch(err) {
 					console.error(err);
 				}
+			},
+			rawfilename: {
+				get() {
+					return this.filename;
+				},
+				set(val) {
+					this.$store.commit('filename', val.trim());
+				}
 			}
-		},
-		data() {
-			return {
-				rawfilename: this.$store.getters.filename
-			};
 		},
 		methods: {
 			...mapActions([
@@ -92,16 +94,12 @@
 				anchor.click();
 				document.body.removeChild(anchor);
 			},
-			updateFilename(e) {
-				this.$store.commit('filename', e.target.value.trim());
-			},
 			blurFilename(e) {
-				if (!e.target.value.trim()) {
-					e.target.value = this.filename;
+				if (!this.rawfilename.trim()) {
+					this.rawfilename = 'README.md';
 				}
 			},
 			clear() {
-				localStorage.removeItem('vuex');
 				this.$store.dispatch('clear');
 			}
 		},
