@@ -89,4 +89,8 @@ Prism.languages.insertBefore('javascript', 'class-name', function_prototype);
 Prism.languages.insertBefore('js', 'class-name', function_prototype);
 Prism.languages.insertBefore('jsx', 'class-name', function_prototype);
 
+Prism.languages.css.comment = [Prism.languages.css.comment, {
+	pattern: /(^|[^\\:])\/\/.*/, lookbehind: true
+}];
+
 export default Prism;
