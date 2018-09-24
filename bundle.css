@@ -1,86 +1,86 @@
 
-.token.keyword,
-.token.operator {
+.prsm--token.prsm--prsm--keyword,
+.prsm--token.prsm--operator {
   color: #d73a49;
 }
-.token.class-name {
+.prsm--token.prsm--class-name {
   color: #6f42c1;
 }
-.token.deleted,
-.token.function {
+.prsm--token.prsm--deleted,
+.prsm--token.prsm--function {
   color: #6f42c1;
 }
-.token.selector {
+.prsm--token.prsm--selector {
   color: #6f42c1;
 }
-.token.property {
+.prsm--token.prsm--property {
   color: #005cc5;
 }
-.token.rule {
+.prsm--token.prsm--rule {
   color: #d73a49;
 }
-.token.doctype {
+.prsm--token.prsm--doctype {
   color: #24292e;
 }
-.token.prolog,
-.token.cdata,
-.token.comment {
+.prsm--token.prsm--prolog,
+.prsm--token.prsm--cdata,
+.prsm--token.prsm--comment {
   color: #6a737d;
 }
-.token.tag {
+.prsm--token.prsm--tag {
   color: #22863a;
 }
-.token.tag .token.punctuation {
+.prsm--token.prsm--tag .prsm--token.prsm--punctuation {
     color: #24292e;
 }
-.token.attr-name {
+.prsm--token.prsm--attr-name {
   color: #6f42c1;
 }
-.token.important,
-.token.bold {
+.prsm--token.prsm--important,
+.prsm--token.prsm--bold {
   font-weight: bold;
 }
-.token.italic {
+.prsm--token.prsm--italic {
   font-style: italic;
 }
-.token.attr-value,
-.token.string {
+.prsm--token.prsm--attr-value,
+.prsm--token.prsm--string {
   color: #032f62;
 }
-.token.number {
+.prsm--token.prsm--number {
   color: #005cc5;
 }
-.token.boolean {
+.prsm--token.prsm--boolean {
   color: #005cc5;
 }
-.language-javascript .token.function.prototype,
-.language-js .token.function.prototype,
-.language-jsx .token.function.prototype {
+.language-javascript .prsm--token.prsm--function.prsm--prototype,
+.language-js .prsm--token.prsm--function.prsm--prototype,
+.language-jsx .prsm--token.prsm--function.prsm--prototype {
   color: #005cc5;
 }
-.language-javascript .token.keyword.builtin.console,
-.language-js .token.keyword.builtin.console,
-.language-jsx .token.keyword.builtin.console {
+.language-javascript .prsm--token.prsm--keyword.prsm--builtin.prsm--console,
+.language-js .prsm--token.prsm--keyword.prsm--builtin.prsm--console,
+.language-jsx .prsm--token.prsm--keyword.prsm--builtin.prsm--console {
   color: #6f42c1;
 }
-.language-javascript .token.function.builtin,
-.language-js .token.function.builtin,
-.language-jsx .token.function.builtin {
+.language-javascript .prsm--token.prsm--function.prsm--builtin,
+.language-js .prsm--token.prsm--function.prsm--builtin,
+.language-jsx .prsm--token.prsm--function.prsm--builtin {
   color: #005cc5;
 }
-.language-javascript .token.keyword.builtin,
-.language-js .token.keyword.builtin,
-.language-jsx .token.keyword.builtin {
+.language-javascript .prsm--token.prsm--keyword.prsm--builtin,
+.language-js .prsm--token.prsm--keyword.prsm--builtin,
+.language-jsx .prsm--token.prsm--keyword.prsm--builtin {
   color: #005cc5;
 }
-.language-javascript .token.keyword.builtin + .token.punctuation + .token.function,
-.language-js .token.keyword.builtin + .token.punctuation + .token.function,
-.language-jsx .token.keyword.builtin + .token.punctuation + .token.function {
+.language-javascript .prsm--token.prsm--keyword.prsm--builtin + .prsm--token.prsm--punctuation + .prsm--token.prsm--function,
+.language-js .prsm--token.prsm--keyword.prsm--builtin + .prsm--token.prsm--punctuation + .prsm--token.prsm--function,
+.language-jsx .prsm--token.prsm--keyword.prsm--builtin + .prsm--token.prsm--punctuation + .prsm--token.prsm--function {
   color: #6f42c1;
 }
-.language-javascript .token.keyword.builtin.console + .token.punctuation + .token.function,
-.language-js .token.keyword.builtin.console + .token.punctuation + .token.function,
-.language-jsx .token.keyword.builtin.console + .token.punctuation + .token.function {
+.language-javascript .prsm--token.prsm--keyword.prsm--builtin.prsm--console + .prsm--token.prsm--punctuation + .prsm--token.prsm--function,
+.language-js .prsm--token.prsm--keyword.prsm--builtin.prsm--console + .prsm--token.prsm--punctuation + .prsm--token.prsm--function,
+.language-jsx .prsm--token.prsm--keyword.prsm--builtin.prsm--console + .prsm--token.prsm--punctuation + .prsm--token.prsm--function {
   color: #005cc5;
 }
 
