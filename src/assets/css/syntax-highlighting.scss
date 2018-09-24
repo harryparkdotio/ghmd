@@ -1,69 +1,69 @@
-.token.keyword,
-.token.operator {
+.prsm--token.prsm--prsm--keyword,
+.prsm--token.prsm--operator {
 	color: #d73a49;
 }
 
-.token.class-name {
+.prsm--token.prsm--class-name {
 	color: #6f42c1;
 }
 
-.token.deleted,
-.token.function {
+.prsm--token.prsm--deleted,
+.prsm--token.prsm--function {
 	color: #6f42c1;
 }
 
-.token.selector {
+.prsm--token.prsm--selector {
 	color: #6f42c1;
 }
 
-.token.property {
+.prsm--token.prsm--property {
 	color: #005cc5;
 }
 
-.token.rule {
+.prsm--token.prsm--rule {
 	color: #d73a49;
 }
 
-.token.doctype {
+.prsm--token.prsm--doctype {
 	color: #24292e;
 }
 
-.token.prolog,
-.token.cdata,
-.token.comment {
+.prsm--token.prsm--prolog,
+.prsm--token.prsm--cdata,
+.prsm--token.prsm--comment {
 	color: #6a737d;
 }
 
-.token.tag {
+.prsm--token.prsm--tag {
 	color: #22863a;
-	.token.punctuation {
+	.prsm--token.prsm--punctuation {
 		color: #24292e;
 	}
 }
 
-.token.attr-name {
+.prsm--token.prsm--attr-name {
 	color: #6f42c1;
 }
 
-.token.important,
-.token.bold {
+.prsm--token.prsm--important,
+.prsm--token.prsm--bold {
 	font-weight: bold;
 }
 
-.token.italic {
+.prsm--token.prsm--italic {
 	font-style: italic;
 }
 
-.token.attr-value,
-.token.string {
+.prsm--token.prsm--attr-value,
+.prsm--token.prsm--string {
 	color: #032f62;
 }
 
-.token.number {
+.prsm--token.prsm--number {
 	color: #005cc5;
 }
 
-.token.boolean {
+.prsm--token.prsm--boolean {
 	color: #005cc5;
 }
 
@@ -72,34 +72,34 @@
 .language-javascript,
 .language-js,
 .language-jsx {
-	.token.function.prototype {
+	.prsm--token.prsm--function.prsm--prototype {
 		// example: require.<find>()
 		// but not: require.<customfunction>()
 		// based on Array, Object, String, Number, Symbol, Function prototypes
 		color: #005cc5;
 	}
 
-	.token.keyword.builtin.console {
+	.prsm--token.prsm--keyword.prsm--builtin.prsm--console {
 		// example: <require>()
 		color: #6f42c1;
 	}
 
-	.token.function.builtin {
+	.prsm--token.prsm--function.prsm--builtin {
 		// example: <require>()
 		color: #005cc5;
 	}
 
-	.token.keyword.builtin {
+	.prsm--token.prsm--keyword.prsm--builtin {
 		// example <console>
 		color: #005cc5;
 	}
 
-	.token.keyword.builtin + .token.punctuation + .token.function {
+	.prsm--token.prsm--keyword.prsm--builtin + .prsm--token.prsm--punctuation + .prsm--token.prsm--function {
 		// example: console.<log>
 		color: #6f42c1;
 	}
 
-	.token.keyword.builtin.console + .token.punctuation + .token.function {
+	.prsm--token.prsm--keyword.prsm--builtin.prsm--console + .prsm--token.prsm--punctuation + .prsm--token.prsm--function {
 		// example: console.<log>
 		color: #005cc5;
 	}

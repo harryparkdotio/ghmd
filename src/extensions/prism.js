@@ -34,6 +34,9 @@ import 'prismjs/components/prism-swift';
 import 'prismjs/components/prism-twig';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-yaml';
+import 'prismjs/plugins/custom-class/prism-custom-class';
+
+Prism.plugins.customClass.prefix('prsm--');
 
 Prism.languages.insertBefore('javascript', 'function', { 'keyword console builtin': /console/ });
 Prism.languages.insertBefore('js', 'function', { 'keyword console builtin': /console/ });
